@@ -30,7 +30,7 @@ const contactInfo = [
 ];
 
 const socials = [
-  { icon: <FaInstagram />, label: 'Instagram', handle: '@faiiiizzzaaaa', link: 'https://www.instagram.com/faiiiizzzaaaa?igsh=MTZ6a3B2cTZvNjZ0Yw%3D%3D&utm_source=qr', color: '#f9a8c9' },
+  { icon: <FaInstagram />, label: 'Instagram', handle: '@kfaiza7277', link: 'https://www.instagram.com/kfaiza7277?igsh=MTlqZTNxanF0NWZlcA%3D%3D&utm_source=qr', color: '#f9a8c9' },
   { icon: <FaYoutube />, label: 'YouTube', handle: '@lifewithfaiza1', link: 'https://youtube.com/@lifewithfaiza1?si=kU2Ico3SWREICfbe', color: '#ffbf8a' },
   { icon: <FaLinkedinIn />, label: 'LinkedIn', handle: 'Faiza Khan', link: 'https://in.linkedin.com/in/faiza-khan-b61639359', color: '#ff9dc7' },
 ];

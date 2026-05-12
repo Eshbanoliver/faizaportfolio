@@ -89,7 +89,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.7 }}
           >
             <span className="hero__social-label">Follow me on</span>
-            <a href="https://www.instagram.com/faiiiizzzaaaa?igsh=MTZ6a3B2cTZvNjZ0Yw%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="Instagram">
+            <a href="https://www.instagram.com/kfaiza7277?igsh=MTlqZTNxanF0NWZlcA%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="Instagram">
               <FaInstagram />
             </a>
             <a href="https://youtube.com/@lifewithfaiza1?si=kU2Ico3SWREICfbe" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="YouTube">

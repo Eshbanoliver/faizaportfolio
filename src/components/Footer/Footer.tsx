@@ -31,7 +31,7 @@ export default function Footer() {
               Transforming brands through strategic SEO and authentic content creation. Let's build something remarkable together.
             </p>
             <div className="footer__socials">
-              <a href="https://www.instagram.com/faiiiizzzaaaa?igsh=MTZ6a3B2cTZvNjZ0Yw%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className="footer__social" aria-label="Instagram">
+              <a href="https://www.instagram.com/kfaiza7277?igsh=MTlqZTNxanF0NWZlcA%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className="footer__social" aria-label="Instagram">
                 <FaInstagram />
               </a>
               <a href="https://youtube.com/@lifewithfaiza1?si=kU2Ico3SWREICfbe" target="_blank" rel="noreferrer" className="footer__social" aria-label="YouTube">

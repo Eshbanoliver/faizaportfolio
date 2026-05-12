@@ -11,12 +11,12 @@ const presenceCards = [
   {
     icon: <FaInstagram />,
     platform: 'Instagram',
-    handle: '@faiiiizzzaaaa',
+    handle: '@kfaiza7277',
     stat: '1800',
     statLabel: 'Followers',
     desc: 'Lifestyle, SEO tips, and behind-the-scenes content creation journey.',
     gradient: 'linear-gradient(135deg, #f9a8c9, #ff9dc7)',
-    link: 'https://www.instagram.com/faiiiizzzaaaa?igsh=MTZ6a3B2cTZvNjZ0Yw%3D%3D&utm_source=qr',
+    link: 'https://www.instagram.com/kfaiza7277?igsh=MTlqZTNxanF0NWZlcA%3D%3D&utm_source=qr',
   },
   {
     icon: <FaYoutube />,
