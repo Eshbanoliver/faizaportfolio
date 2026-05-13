@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Experience from './pages/Experience';
-import Education from './pages/Education';
-import Contact from './pages/Contact';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './App.css';
+
+// Lazy load page components for better initial load speed
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Experience = lazy(() => import('./pages/Experience'));
+const Education = lazy(() => import('./pages/Education'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 const pageVariants: Variants = {
   initial: { opacity: 0, y: 24 },
@@ -22,13 +24,15 @@ function AnimatedRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Home /></motion.div>} />
-        <Route path="/about" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><About /></motion.div>} />
-        <Route path="/experience" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Experience /></motion.div>} />
-        <Route path="/education" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Education /></motion.div>} />
-        <Route path="/contact" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Contact /></motion.div>} />
-      </Routes>
+      <Suspense fallback={<div style={{ height: '100vh', background: 'var(--bg-dark)' }} />}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Home /></motion.div>} />
+          <Route path="/about" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><About /></motion.div>} />
+          <Route path="/experience" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Experience /></motion.div>} />
+          <Route path="/education" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Education /></motion.div>} />
+          <Route path="/contact" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Contact /></motion.div>} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 }
@@ -37,7 +41,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2200);
+    // Reduced timeout from 2200ms to 1000ms for faster perceived performance
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -59,3 +64,4 @@ export default function App() {
     </Router>
   );
 }
+
