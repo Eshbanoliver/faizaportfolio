@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
+    target: 'esnext',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -14,10 +15,12 @@ export default defineConfig({
         },
       },
     },
-    // Minify with esbuild (default) but ensure it's aggressive
     minify: 'esbuild',
+    cssCodeSplit: true,
     sourcemap: false,
     reportCompressedSize: false,
+    chunkSizeWarningLimit: 1000,
   },
+
 })
 

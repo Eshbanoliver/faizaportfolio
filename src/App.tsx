@@ -24,7 +24,7 @@ function AnimatedRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={<div style={{ height: '100vh', background: 'var(--bg-dark)' }} />}>
+      <Suspense fallback={<div style={{ height: '100vh', background: '#fffcfd' }} />}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><Home /></motion.div>} />
           <Route path="/about" element={<motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit"><About /></motion.div>} />
@@ -41,8 +41,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Reduced timeout from 2200ms to 1000ms for faster perceived performance
-    const timer = setTimeout(() => setLoading(false), 1000);
+    // Reduced timeout to 600ms for even faster perceived performance and better LCP
+    const timer = setTimeout(() => setLoading(false), 600);
     return () => clearTimeout(timer);
   }, []);
 

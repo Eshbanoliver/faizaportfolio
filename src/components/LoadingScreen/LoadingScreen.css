@@ -82,11 +82,12 @@
   height: 100%;
   background: var(--gradient-btn);
   border-radius: 3px;
-  animation: loadProgress 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: loadProgress 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes loadProgress {
   0% { width: 0%; }
-  60% { width: 75%; }
+  60% { width: 85%; }
   100% { width: 100%; }
 }
+
