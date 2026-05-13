@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { FaGraduationCap, FaCertificate, FaMedal, FaLaptop } from 'react-icons/fa';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { FaGraduationCap, FaCertificate, FaMedal, FaLaptop, FaChevronRight } from 'react-icons/fa';
 import { useScrollReveal, fadeUp, scaleIn, staggerContainer } from '../hooks/useScrollReveal';
 import CTASection from '../components/sections/CTASection/CTASection';
 import './Education.css';
@@ -120,6 +120,50 @@ const workshops = [
   { title: 'Personal Branding Masterclass', org: 'BrandFest Online', icon: '💡' },
 ];
 
+function Card3D({ children, className = "" }: { children: React.ReactNode, className?: string }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7deg', '-7deg']);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7deg', '7deg']);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+    e.currentTarget.style.setProperty('--mouse-x', `${(mouseX / width) * 100}%`);
+    e.currentTarget.style.setProperty('--mouse-y', `${(mouseY / height) * 100}%`);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      className={className}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+    >
+      <div style={{ transform: 'translateZ(20px)' }}>{children}</div>
+      <div className="card-shine" />
+    </motion.div>
+  );
+}
+
 export default function Education() {
   const heroReveal = useScrollReveal(0.1);
   const eduReveal = useScrollReveal(0.1);
@@ -128,9 +172,16 @@ export default function Education() {
 
   return (
     <div className="page-wrapper education-page">
+      {/* Decorative Background */}
+      <div className="page-bg-decor">
+        <div className="decor-blob blob-1"></div>
+        <div className="decor-blob blob-2"></div>
+        <div className="decor-blob blob-3"></div>
+        <div className="decor-grid"></div>
+      </div>
+
       {/* Page Hero */}
       <section className="edu-hero section">
-        <div className="edu-hero__bg" />
         <div className="container">
           <motion.div
             ref={heroReveal.ref}
@@ -139,14 +190,16 @@ export default function Education() {
             variants={staggerContainer}
             className="edu-hero__content"
           >
-            <motion.span className="section-tag" variants={fadeUp}>✦ Education</motion.span>
+            <motion.div variants={fadeUp}>
+              <span className="section-tag">✦ Academic Foundation</span>
+            </motion.div>
             <motion.h1 className="section-title" variants={fadeUp}>
               Knowledge That <span className="gradient-text">Powers Results</span>
             </motion.h1>
-            <motion.p className="section-subtitle" style={{ margin: '0 auto' }} variants={fadeUp}>
-              A strong academic foundation combined with continuous digital education and industry certifications.
+            <motion.p className="section-subtitle" variants={fadeUp}>
+              A strong academic background in commerce and marketing, continuously upgraded with the latest digital certifications.
             </motion.p>
-            <div className="section-divider" style={{ margin: '20px auto 0' }} />
+            <motion.div className="section-divider-custom" variants={fadeUp} />
           </motion.div>
         </div>
       </section>
@@ -161,23 +214,28 @@ export default function Education() {
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>
-              <span className="section-tag">✦ Academic Qualifications</span>
+              <span className="section-tag">✦ Formal Education</span>
               <h2 className="section-title">Academic <span className="gradient-text">Background</span></h2>
-              <div className="section-divider" />
+              <div className="section-divider-custom" />
             </motion.div>
 
             <motion.div className="edu-cards" variants={staggerContainer}>
               {education.map((edu) => (
-                <motion.div key={edu.degree} className="edu-card glass-card" variants={fadeUp} whileHover={{ y: -6 }}>
-                  <div className="edu-card__icon" style={{ background: `linear-gradient(135deg, ${edu.color}, #ffbf8a)` }}>
-                    {edu.icon}
-                  </div>
-                  <div className="edu-card__content">
-                    <span className="edu-card__period">{edu.period}</span>
-                    <h3 className="edu-card__degree">{edu.degree}</h3>
-                    <span className="edu-card__institution">{edu.institution}</span>
-                    <p className="edu-card__desc">{edu.desc}</p>
-                  </div>
+                <motion.div key={edu.degree} variants={fadeUp}>
+                  <Card3D className="edu-card glass-card">
+                    <div className="edu-card__icon-wrap">
+                      <div className="edu-card__icon" style={{ background: `linear-gradient(135deg, ${edu.color}, #ffbf8a)` }}>
+                        {edu.icon}
+                      </div>
+                      <div className="edu-card__icon-glow" style={{ background: edu.color }} />
+                    </div>
+                    <div className="edu-card__content">
+                      <span className="edu-card__period">{edu.period}</span>
+                      <h3 className="edu-card__degree">{edu.degree}</h3>
+                      <span className="edu-card__institution">{edu.institution}</span>
+                      <p className="edu-card__desc">{edu.desc}</p>
+                    </div>
+                  </Card3D>
                 </motion.div>
               ))}
             </motion.div>
@@ -186,7 +244,7 @@ export default function Education() {
       </section>
 
       {/* Certifications */}
-      <section className="edu-certs section animated-gradient-bg" id="certifications">
+      <section className="edu-certs section" id="certifications">
         <div className="container">
           <motion.div
             ref={certReveal.ref}
@@ -195,22 +253,25 @@ export default function Education() {
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>
-              <span className="section-tag">✦ Certifications</span>
+              <span className="section-tag">✦ Professional Proof</span>
               <h2 className="section-title">Industry <span className="gradient-text">Certifications</span></h2>
-              <div className="section-divider" />
+              <div className="section-divider-custom" />
             </motion.div>
 
             <motion.div className="certs-grid" variants={staggerContainer}>
               {certifications.map((cert) => (
-                <motion.div key={cert.title} className="cert-card glass-card" variants={scaleIn} whileHover={{ y: -6, scale: 1.02 }}>
-                  <div className="cert-card__icon">{cert.icon}</div>
-                  <div className="cert-card__year badge" style={{ background: `rgba(${cert.color.replace('#','')}, 0.15)`, color: cert.color }}>
-                    {cert.year}
-                  </div>
-                  <h3 className="cert-card__title">{cert.title}</h3>
-                  <span className="cert-card__issuer">
-                    <FaCertificate style={{ color: cert.color }} /> {cert.issuer}
-                  </span>
+                <motion.div key={cert.title} variants={scaleIn}>
+                  <Card3D className="cert-card glass-card">
+                    <div className="cert-card__icon">{cert.icon}</div>
+                    <div className="cert-card__year-badge" style={{ color: cert.color, borderColor: cert.color }}>
+                      {cert.year}
+                    </div>
+                    <h3 className="cert-card__title">{cert.title}</h3>
+                    <div className="cert-card__footer">
+                      <FaCertificate style={{ color: cert.color }} />
+                      <span className="cert-card__issuer">{cert.issuer}</span>
+                    </div>
+                  </Card3D>
                 </motion.div>
               ))}
             </motion.div>
@@ -230,41 +291,57 @@ export default function Education() {
             <motion.div className="section-header" variants={fadeUp}>
               <span className="section-tag">✦ Continuous Learning</span>
               <h2 className="section-title">Courses &amp; <span className="gradient-text">Training</span></h2>
-              <div className="section-divider" />
+              <div className="section-divider-custom" />
             </motion.div>
 
             <div className="courses-layout">
               <motion.div className="courses-list" variants={staggerContainer}>
                 {courses.map((course) => (
-                  <motion.div key={course.title} className="course-item glass-card" variants={fadeUp} whileHover={{ x: 8 }}>
-                    <div className="course-item__icon" style={{ background: `linear-gradient(135deg, ${course.color}, #ffbf8a)` }}>
-                      {course.icon}
+                  <motion.div 
+                    key={course.title} 
+                    className="course-item glass-card" 
+                    variants={fadeUp}
+                    whileHover={{ x: 10, background: 'rgba(255,255,255,0.9)' }}
+                  >
+                    <div className="course-item__icon-wrap">
+                      <div className="course-item__icon" style={{ background: `linear-gradient(135deg, ${course.color}, #ffbf8a)` }}>
+                        {course.icon}
+                      </div>
                     </div>
                     <div className="course-item__body">
                       <h4 className="course-item__title">{course.title}</h4>
                       <div className="course-item__meta">
-                        <span>{course.platform}</span>
-                        <span className="course-item__dot">·</span>
-                        <span>{course.hours}</span>
+                        <span className="platform">{course.platform}</span>
+                        <span className="dot">·</span>
+                        <span className="duration">{course.hours}</span>
                       </div>
                     </div>
-                    <FaMedal className="course-item__medal" />
+                    <div className="course-item__medal">
+                      <FaMedal />
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
 
               {/* Workshops */}
-              <motion.div className="workshops" variants={fadeUp}>
-                <h3 className="workshops__title">Workshops &amp; Events</h3>
-                {workshops.map((w) => (
-                  <div key={w.title} className="workshop-item glass-card">
-                    <span className="workshop-item__icon">{w.icon}</span>
-                    <div>
-                      <strong className="workshop-item__title">{w.title}</strong>
-                      <span className="workshop-item__org">{w.org}</span>
-                    </div>
+              <motion.div className="workshops-container" variants={fadeUp}>
+                <div className="workshops-card glass-card">
+                  <h3 className="workshops__title">Workshops &amp; Events</h3>
+                  <div className="workshops-list">
+                    {workshops.map((w) => (
+                      <div key={w.title} className="workshop-item">
+                        <div className="workshop-item__icon-wrap">
+                          <span className="workshop-item__icon">{w.icon}</span>
+                        </div>
+                        <div className="workshop-item__text">
+                          <strong className="workshop-item__title">{w.title}</strong>
+                          <span className="workshop-item__org">{w.org}</span>
+                        </div>
+                        <FaChevronRight className="workshop-item__arrow" />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </motion.div>
             </div>
           </motion.div>
@@ -275,3 +352,4 @@ export default function Education() {
     </div>
   );
 }
+
