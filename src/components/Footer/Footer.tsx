@@ -24,7 +24,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer__brand">
             <div className="footer__logo">
-              <img src="/favicon.png" alt="Faiza Khan Logo" className="footer__logo-img" />
+              <img src="/favicon.svg" alt="Faiza Khan Logo" className="footer__logo-img" />
+
               <span className="footer__logo-text">Faiza</span><span>.</span>
             </div>
             <p className="footer__tagline">
@@ -64,9 +65,10 @@ export default function Footer() {
             <ul className="footer__links">
               {services.map((s) => (
                 <li key={s}>
-                  <span className="footer__link footer__link--text">{s}</span>
+                  <NavLink to="/experience" className="footer__link">{s}</NavLink>
                 </li>
               ))}
+
             </ul>
           </div>
 
