@@ -11,7 +11,7 @@ const education = [
     period: '2016 – 2019',
     desc: 'Focused on business administration, marketing fundamentals, and communications. Built the analytical foundation for digital marketing.',
     icon: <FaGraduationCap />,
-    color: '#f9a8c9',
+    color: '#ff9dc7', // Vibrant Pink
   },
   {
     degree: 'Intermediate in Commerce',
@@ -19,7 +19,7 @@ const education = [
     period: '2014 – 2016',
     desc: 'Completed intermediate level education with distinction in Commerce subjects.',
     icon: <FaGraduationCap />,
-    color: '#ffbf8a',
+    color: '#7f9cf5', // Indigo
   },
 ];
 
@@ -29,42 +29,42 @@ const certifications = [
     issuer: 'Google',
     year: '2024',
     icon: '🎯',
-    color: '#f9a8c9',
+    color: '#4fd1c5', // Teal/Mint
   },
   {
     title: 'Google Search Ads Certification',
     issuer: 'Google Skillshop',
     year: '2024',
     icon: '🔍',
-    color: '#ffbf8a',
+    color: '#63b3ed', // Sky Blue
   },
   {
     title: 'HubSpot Content Marketing',
     issuer: 'HubSpot Academy',
     year: '2023',
     icon: '✍️',
-    color: '#ff9dc7',
+    color: '#ff9dc7', // Vibrant Pink
   },
   {
     title: 'SEMrush SEO Fundamentals',
     issuer: 'SEMrush Academy',
     year: '2023',
     icon: '📊',
-    color: '#ffa05c',
+    color: '#f6ad55', // Orange
   },
   {
     title: 'Facebook Blueprint Certification',
     issuer: 'Meta',
     year: '2022',
     icon: '📱',
-    color: '#f9a8c9',
+    color: '#b794f4', // Lavender
   },
   {
     title: 'YouTube Creator Academy',
     issuer: 'Google',
     year: '2022',
     icon: '🎬',
-    color: '#ffbf8a',
+    color: '#fc8181', // Soft Red/Coral
   },
 ];
 
@@ -74,44 +74,45 @@ const courses = [
     platform: 'Udemy',
     hours: '40 hours',
     icon: <FaLaptop />,
-    color: '#f9a8c9',
+    color: '#4fd1c5',
   },
   {
     title: 'Instagram Marketing Mastery',
     platform: 'Coursera',
     hours: '30 hours',
     icon: <FaLaptop />,
-    color: '#ffbf8a',
+    color: '#b794f4',
   },
   {
     title: 'YouTube SEO & Channel Growth',
     platform: 'Skillshare',
     hours: '25 hours',
     icon: <FaLaptop />,
-    color: '#ff9dc7',
+    color: '#fc8181',
   },
   {
     title: 'Content Strategy for Social Media',
     platform: 'LinkedIn Learning',
     hours: '20 hours',
     icon: <FaLaptop />,
-    color: '#ffa05c',
+    color: '#63b3ed',
   },
   {
     title: 'Canva for Business Graphics',
     platform: 'Canva Design School',
     hours: '15 hours',
     icon: <FaLaptop />,
-    color: '#f9a8c9',
+    color: '#f6ad55',
   },
   {
     title: 'WordPress for Beginners to Advanced',
     platform: 'Udemy',
     hours: '35 hours',
     icon: <FaLaptop />,
-    color: '#ffbf8a',
+    color: '#7f9cf5',
   },
 ];
+
 
 const workshops = [
   { title: 'Digital Marketing Summit 2024', org: 'DigiSummit India', icon: '🎤' },

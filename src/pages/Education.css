@@ -23,7 +23,7 @@
 .blob-1 {
   width: 600px;
   height: 600px;
-  background: var(--pink-100);
+  background: rgba(127, 156, 245, 0.4); /* Indigo */
   top: -200px;
   right: -100px;
 }
@@ -31,7 +31,7 @@
 .blob-2 {
   width: 500px;
   height: 500px;
-  background: var(--peach-100);
+  background: rgba(79, 209, 197, 0.3); /* Teal */
   bottom: 20%;
   left: -200px;
   animation-delay: -5s;
@@ -40,11 +40,12 @@
 .blob-3 {
   width: 400px;
   height: 400px;
-  background: var(--pink-200);
+  background: rgba(252, 129, 129, 0.3); /* Coral */
   top: 40%;
   right: -100px;
   animation-delay: -10s;
 }
+
 
 .decor-grid {
   position: absolute;
