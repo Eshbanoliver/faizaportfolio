@@ -41,9 +41,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Reduced timeout to 600ms for even faster perceived performance and better LCP
-    const timer = setTimeout(() => setLoading(false), 600);
-    return () => clearTimeout(timer);
+    // Site is ready immediately, loading screen just fades out
+    setLoading(false);
   }, []);
 
   return (
@@ -51,17 +50,16 @@ export default function App() {
       <AnimatePresence>
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
-      {!loading && (
-        <>
-          <Navbar />
-          <main>
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <ScrollToTop />
-        </>
-      )}
+      
+      {/* Content renders immediately to fix LCP and Speed Index */}
+      <Navbar />
+      <main>
+        <AnimatedRoutes />
+      </main>
+      <Footer />
+      <ScrollToTop />
     </Router>
   );
 }
+
 

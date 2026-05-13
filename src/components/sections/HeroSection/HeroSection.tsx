@@ -25,7 +25,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0 }}
           >
             <span className="section-tag">
               <HiSparkles /> Welcome to my portfolio
@@ -34,9 +34,9 @@ export default function HeroSection() {
 
           <motion.h1
             className="hero__title"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
           >
             Hi, I'm{' '}
             <span className="hero__name gradient-text">
@@ -105,9 +105,9 @@ export default function HeroSection() {
         <div className="hero__visual">
           <motion.div
             className="hero__image-wrapper"
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
             {/* Main image area */}
             <div className="hero__image-frame">
