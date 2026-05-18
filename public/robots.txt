@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://eshbanoliver.github.io/faizaportfolio/sitemap.xml
