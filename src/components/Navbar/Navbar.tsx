@@ -24,7 +24,10 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
+    const handle = requestAnimationFrame(() => {
+      setMobileOpen(false);
+    });
+    return () => cancelAnimationFrame(handle);
   }, [location]);
 
   useEffect(() => {

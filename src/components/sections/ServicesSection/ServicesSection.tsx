@@ -49,7 +49,15 @@ const services = [
   },
 ];
 
-function ServiceCard({ icon, title, desc, color, number }: any) {
+interface ServiceProps {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  color: string;
+  number: string;
+}
+
+function ServiceCard({ icon, title, desc, color, number }: ServiceProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 

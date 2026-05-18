@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useAnimation } from 'framer-motion';
 import { useScrollReveal, fadeUp, staggerContainer } from '../../../hooks/useScrollReveal';
 import './SkillsSection.css';
 
@@ -90,7 +91,7 @@ export default function SkillsSection() {
   );
 }
 
-function SkillBar({ name, level, color, controls }: { name: string, level: number, color: string, controls: any }) {
+function SkillBar({ name, level, color, controls }: { name: string, level: number, color: string, controls: ReturnType<typeof useAnimation> }) {
   return (
     <div className="skill-bar">
       <div className="skill-bar__header">

@@ -1,7 +1,13 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaBriefcase, FaInstagram, FaYoutube, FaHandshake, FaSearch, FaChevronRight } from 'react-icons/fa';
 import CountUpPkg from 'react-countup';
-const CountUp = (CountUpPkg as any).default || CountUpPkg;
+interface CountUpProps {
+  end: number;
+  duration?: number;
+  separator?: string;
+  suffix?: string;
+}
+const CountUp = (CountUpPkg as unknown as { default?: React.ComponentType<CountUpProps> }).default || (CountUpPkg as React.ComponentType<CountUpProps>);
 import { useInView } from 'react-intersection-observer';
 import { useScrollReveal, fadeUp, staggerContainer, scaleIn } from '../hooks/useScrollReveal';
 import CTASection from '../components/sections/CTASection/CTASection';
@@ -106,7 +112,17 @@ function Counter({ value, suffix, label, icon }: { value: number, suffix: string
   );
 }
 
-function ExperienceCard({ exp }: { exp: any }) {
+interface ExperienceItem {
+  period: string;
+  role: string;
+  company: string;
+  type: string;
+  icon: React.ReactNode;
+  color: string;
+  achievements: string[];
+}
+
+function ExperienceCard({ exp }: { exp: ExperienceItem }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -183,8 +199,8 @@ function ExperienceCard({ exp }: { exp: any }) {
 }
 
 export default function Experience() {
-  const heroReveal = useScrollReveal(0.1);
-  const timelineReveal = useScrollReveal(0.1);
+  const { ref: heroRef, controls: heroControls } = useScrollReveal(0.1);
+  const { ref: timelineRef, controls: timelineControls } = useScrollReveal(0.1);
 
   return (
     <div className="page-wrapper experience-page">
@@ -200,9 +216,9 @@ export default function Experience() {
       <section className="exp-hero section">
         <div className="container">
           <motion.div
-            ref={heroReveal.ref}
+            ref={heroRef}
             initial="hidden"
-            animate={heroReveal.controls}
+            animate={heroControls}
             variants={staggerContainer}
             className="exp-hero__content"
           >
@@ -239,9 +255,9 @@ export default function Experience() {
       <section className="exp-timeline-section section" id="timeline">
         <div className="container">
           <motion.div
-            ref={timelineReveal.ref}
+            ref={timelineRef}
             initial="hidden"
-            animate={timelineReveal.controls}
+            animate={timelineControls}
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>

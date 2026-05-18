@@ -166,10 +166,10 @@ function Card3D({ children, className = "" }: { children: React.ReactNode, class
 }
 
 export default function Education() {
-  const heroReveal = useScrollReveal(0.1);
-  const eduReveal = useScrollReveal(0.1);
-  const certReveal = useScrollReveal(0.1);
-  const courseReveal = useScrollReveal(0.1);
+  const { ref: heroRef, controls: heroControls } = useScrollReveal(0.1);
+  const { ref: eduRef, controls: eduControls } = useScrollReveal(0.1);
+  const { ref: certRef, controls: certControls } = useScrollReveal(0.1);
+  const { ref: courseRef, controls: courseControls } = useScrollReveal(0.1);
 
   return (
     <div className="page-wrapper education-page">
@@ -185,9 +185,9 @@ export default function Education() {
       <section className="edu-hero section">
         <div className="container">
           <motion.div
-            ref={heroReveal.ref}
+            ref={heroRef}
             initial="hidden"
-            animate={heroReveal.controls}
+            animate={heroControls}
             variants={staggerContainer}
             className="edu-hero__content"
           >
@@ -209,9 +209,9 @@ export default function Education() {
       <section className="edu-academic section" id="academic">
         <div className="container">
           <motion.div
-            ref={eduReveal.ref}
+            ref={eduRef}
             initial="hidden"
-            animate={eduReveal.controls}
+            animate={eduControls}
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>
@@ -248,9 +248,9 @@ export default function Education() {
       <section className="edu-certs section" id="certifications">
         <div className="container">
           <motion.div
-            ref={certReveal.ref}
+            ref={certRef}
             initial="hidden"
-            animate={certReveal.controls}
+            animate={certControls}
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>
@@ -284,9 +284,9 @@ export default function Education() {
       <section className="edu-courses section" id="courses">
         <div className="container">
           <motion.div
-            ref={courseReveal.ref}
+            ref={courseRef}
             initial="hidden"
-            animate={courseReveal.controls}
+            animate={courseControls}
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>

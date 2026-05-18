@@ -1,7 +1,14 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaInstagram, FaYoutube, FaLinkedinIn, FaHandshake } from 'react-icons/fa';
 import CountUpPkg from 'react-countup';
-const CountUp = (CountUpPkg as any).default || CountUpPkg;
+interface CountUpProps {
+  end: number;
+  duration?: number;
+  separator?: string;
+  suffix?: string;
+  className?: string;
+}
+const CountUp = (CountUpPkg as unknown as { default?: React.ComponentType<CountUpProps> }).default || (CountUpPkg as React.ComponentType<CountUpProps>);
 
 import { useInView } from 'react-intersection-observer';
 import { fadeUp, staggerContainer } from '../../../hooks/useScrollReveal';
@@ -96,7 +103,18 @@ export default function SocialPresenceSection() {
   );
 }
 
-function SocialCard({ card }: { card: any }) {
+interface SocialCardItem {
+  icon: React.ReactNode;
+  platform: string;
+  handle: string;
+  stat: string;
+  statLabel: string;
+  desc: string;
+  gradient: string;
+  link: string;
+}
+
+function SocialCard({ card }: { card: SocialCardItem }) {
   const [inViewRef, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   
   const x = useMotionValue(0);

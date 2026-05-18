@@ -42,7 +42,10 @@ export default function App() {
 
   useEffect(() => {
     // Site is ready immediately, loading screen just fades out
-    setLoading(false);
+    const handle = requestAnimationFrame(() => {
+      setLoading(false);
+    });
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   return (

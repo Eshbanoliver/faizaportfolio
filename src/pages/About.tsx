@@ -51,8 +51,8 @@ const values = [
 ];
 
 export default function About() {
-  const heroReveal = useScrollReveal(0.1);
-  const timelineReveal = useScrollReveal(0.1);
+  const { ref: heroRef, controls: heroControls } = useScrollReveal(0.1);
+  const { ref: timelineRef, controls: timelineControls } = useScrollReveal(0.1);
 
   return (
     <div className="page-wrapper about-page">
@@ -63,9 +63,9 @@ export default function About() {
         <div className="container">
           <motion.div
             className="about-hero__grid"
-            ref={heroReveal.ref}
+            ref={heroRef}
             initial="hidden"
-            animate={heroReveal.controls}
+            animate={heroControls}
             variants={staggerContainer}
           >
             {/* Text */}
@@ -119,9 +119,9 @@ export default function About() {
       <section className="about-timeline section animated-gradient-bg" id="journey">
         <div className="container">
           <motion.div
-            ref={timelineReveal.ref}
+            ref={timelineRef}
             initial="hidden"
-            animate={timelineReveal.controls}
+            animate={timelineControls}
             variants={staggerContainer}
           >
             <motion.div className="section-header" variants={fadeUp}>

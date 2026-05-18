@@ -40,8 +40,8 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const heroReveal = useScrollReveal(0.1);
-  const formReveal = useScrollReveal(0.1);
+  const { ref: heroRef, controls: heroControls } = useScrollReveal(0.1);
+  const { ref: formRef, controls: formControls } = useScrollReveal(0.1);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -61,9 +61,9 @@ export default function Contact() {
         <div className="contact-hero__bg" />
         <div className="container">
           <motion.div
-            ref={heroReveal.ref}
+            ref={heroRef}
             initial="hidden"
-            animate={heroReveal.controls}
+            animate={heroControls}
             variants={staggerContainer}
             className="contact-hero__content"
           >
@@ -115,9 +115,9 @@ export default function Contact() {
       <section className="contact-main section animated-gradient-bg" id="form">
         <div className="container">
           <motion.div
-            ref={formReveal.ref}
+            ref={formRef}
             initial="hidden"
-            animate={formReveal.controls}
+            animate={formControls}
             variants={staggerContainer}
             className="contact-main-grid"
           >
